@@ -10,6 +10,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Role {
+  user
+  assistant
+}
+
 model Session {
   id        String    @id @default(cuid())
   title     String
@@ -20,7 +25,7 @@ model Session {
 model Message {
   id        String   @id @default(cuid())
   sessionId String
-  role      String   // "user" | "assistant"
+  role      Role
   content   String
   createdAt DateTime @default(now())
 
